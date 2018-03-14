@@ -6,8 +6,20 @@ import org.modules.c.Ting;
 public class Main {
 
   public static void main(String[] args) {
-    System.out.println(Thing.class.getModule().getName());
-    System.out.println(Ting.class.getModule().getName());
+    printInfo(Thing.class);
+    printInfo(Ting.class);
+    printInfo(Main.class);
+  }
+
+  private static void printInfo(Class clazz) {
+    System.out.println("Class:   " + clazz.getCanonicalName());
+    System.out.println("Module:  " + clazz.getModule().getName());
+    System.out.println("Packages:");    
+    Package[] packages = clazz.getClassLoader().getDefinedPackages();
+    for (int i = 0; i < packages.length; i++) {
+      Package p = packages[i];
+      System.out.println("- " + p.getName());
+    }
+    System.out.println();
   }
 }
-
