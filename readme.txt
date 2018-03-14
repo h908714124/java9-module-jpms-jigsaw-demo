@@ -19,6 +19,5 @@ javac --module-path module-a/target/classes:module-c/target/classes \
       module-b/src/org.modules.b/module-info.java 
 
 # Run module b
-java -cp module-a/target/classes:module-b/target/classes:module-c/target/classes \
-     --module-path module-a/target/classes:module-b/target/classes:module-c/target/classes \
+java --module-path module-a/target/classes:module-b/target/classes:module-c/target/classes \
      --module org.modules.b/org.modules.b.Main
