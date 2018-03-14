@@ -17,7 +17,6 @@ javac -d module-c/target/classes \
 # Compile module b
 javac -d module-b/target/classes \
       --module-path module-a/target/classes:module-c/target/classes \
-      -cp module-a/target/classes:module-c/target/classes \
       module-b/src/org/modules/b/Main.java \
       module-b/src/org.modules.b/module-info.java 
 
