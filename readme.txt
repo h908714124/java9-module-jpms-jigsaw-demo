@@ -16,10 +16,10 @@ javac -d module-c/target/classes \
 
 # Compile module b
 javac -d module-b/target/classes \
-      --module-path module-a/target/classes:module-c/target/classes \
+      -p module-a/target/classes:module-c/target/classes \
       module-b/src/org/modules/b/Main.java \
       module-b/src/org.modules.b/module-info.java 
 
 # Run module b
-java --module-path module-a/target/classes:module-b/target/classes:module-c/target/classes \
-     --module org.modules.b/org.modules.b.Main
+java -p module-a/target/classes:module-b/target/classes:module-c/target/classes \
+     -m org.modules.b/org.modules.b.Main
