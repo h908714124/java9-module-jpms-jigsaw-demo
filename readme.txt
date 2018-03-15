@@ -20,7 +20,7 @@ javac -d target/classes \
       src/org.modules.b/org/modules/b/Main.java
 
 if [[ ${1} == "smoketest" ]]; then
-    java -p target/classes -m org.modules.b/org.modules.b.Main
+    java -Xmx128m -p target/classes -m org.modules.b/org.modules.b.Main
     exit 0
 fi
 
@@ -37,3 +37,4 @@ sudo docker build -t java9-module-jpms-jigsaw-demo .
 if [[ ${1} == "run" ]]; then
     sudo docker run java9-module-jpms-jigsaw-demo:latest
 fi
+

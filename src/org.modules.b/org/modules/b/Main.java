@@ -9,6 +9,7 @@ public class Main {
     printInfo(Thing.class);
     printInfo(Ting.class);
     printInfo(Main.class);
+    System.out.println("Mem:     " + Runtime.getRuntime().maxMemory());
   }
 
   private static void printInfo(Class clazz) {
