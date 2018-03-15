@@ -6,9 +6,6 @@ USER newuser
 WORKDIR /home/newuser
 
 ADD myjre myjre
-ADD target target
 
 CMD myjre/bin/java ${JAVA_OPTS} \
-    -p target/classes \
     -m org.modules.b/org.modules.b.Main
-

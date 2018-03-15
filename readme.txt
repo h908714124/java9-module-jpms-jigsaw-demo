@@ -13,7 +13,7 @@ set -e
 # Clean
 rm -rf target myjre
 
-# The directory structure in ./src/ is described here:
+# The directory structure in ./src is described here:
 # http://openjdk.java.net/projects/jigsaw/quick-start
 javac -d target/classes \
       --module-source-path src \
@@ -25,11 +25,11 @@ if [[ ${1} == "smoketest" ]]; then
     exit 0
 fi
 
-# Create self-contained JRE in ./myjre/
+# Create self-contained JRE in ./myjre
 jlink -p ${JAVA_HOME}/jmods:target/classes \
       --compress 2 \
       --no-header-files \
-      --add-modules java.base \
+      --add-modules java.base,org.modules.b \
       --output myjre
 
 # Create docker image (see Dockerfile)
