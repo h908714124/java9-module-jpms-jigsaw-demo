@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Create a runnable docker image with Java 9.
+# Running a Java 9 custom JRE inside a Docker container.
 #
 # Build docker image: bash readme.txt
 # Quick test:         bash readme.txt smoketest
@@ -43,4 +43,3 @@ if [[ ${1} == "run" ]]; then
         -e JAVA_OPTS="${JAVA_OPTS}" \
         java9-module-jpms-jigsaw-demo:latest
 fi
-
