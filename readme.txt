@@ -16,8 +16,5 @@ jlink -p ${JAVA_HOME}/jmods:target/classes \
       --add-modules java.base \
       --output myjre
 
-# Run module b
-myjre/bin/java -p target/classes \
-	       -m org.modules.b/org.modules.b.Main
 sudo docker build -t java9-module-jpms-jigsaw-demo .
 sudo docker run java9-module-jpms-jigsaw-demo:latest
