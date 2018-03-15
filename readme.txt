@@ -11,6 +11,8 @@ javac -d target/classes \
       src/org.modules.b/org/modules/b/Main.java
 
 jlink -p ${JAVA_HOME}/jmods:target/classes \
+      --compress 2 \
+      --no-header-files \
       --add-modules java.base \
       --output myjre
 
