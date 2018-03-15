@@ -5,6 +5,7 @@
 # Build docker image: bash readme.txt
 # Quick test:         bash readme.txt smoketest
 # Build and run:      bash readme.txt run
+# JVM settings:       JAVA_OPTS="-Xmx64m" bash readme.txt run
 #
 
 set -e
@@ -35,6 +36,11 @@ jlink -p ${JAVA_HOME}/jmods:target/classes \
 sudo docker build -t java9-module-jpms-jigsaw-demo .
 
 if [[ ${1} == "run" ]]; then
-    sudo docker run -e JAVA_OPTS="-Xmx128m" --rm java9-module-jpms-jigsaw-demo:latest
+    if [[ -z "${JAVA_OPTS}" ]]; then
+        JAVA_OPTS="-Xmx128m"
+    fi
+    sudo docker run --rm \
+        -e JAVA_OPTS="${JAVA_OPTS}" \
+        java9-module-jpms-jigsaw-demo:latest
 fi
 
