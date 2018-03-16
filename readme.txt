@@ -2,7 +2,9 @@
 
 set -e
 
-rm -rf module-a/target module-b/target module-c/target myjre
+# Clean
+rm -rf lib module-a/target module-b/target module-c/target myjre
+mkdir lib
 
 # Compile module a
 javac -d module-a/target/classes \
@@ -20,10 +22,15 @@ javac -d module-b/target/classes \
       module-b/src/org/modules/b/Main.java \
       module-b/src/module-info.java
 
-jlink -p ${JAVA_HOME}/jmods:module-a/target/classes:module-b/target/classes:module-c/target/classes \
-      --add-modules java.base \
+# Create jars
+jar --create --file=lib/module-a@1.0.jar --module-version=1.0 -C module-a/target/classes .
+jar --create --file=lib/module-c@1.0.jar --module-version=1.0 -C module-c/target/classes .
+jar --create --file=lib/module-b.jar --main-class=org.modules.b.Main -C module-b/target/classes .
+
+# Create custom JRE
+jlink -p ${JAVA_HOME}/jmods:lib/module-a@1.0.jar:lib/module-c@1.0.jar:lib/module-b.jar \
+      --add-modules java.base,org.modules.b \
       --output myjre
 
 # Run module b
-myjre/bin/java -p module-a/target/classes:module-b/target/classes:module-c/target/classes \
-     -m org.modules.b/org.modules.b.Main
+myjre/bin/java -m org.modules.b
