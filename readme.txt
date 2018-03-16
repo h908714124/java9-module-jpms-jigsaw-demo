@@ -17,8 +17,7 @@ rm -rf target myjre
 # http://openjdk.java.net/projects/jigsaw/quick-start
 javac -d target/classes \
       --module-source-path src \
-      src/org.modules.b/module-info.java \
-      src/org.modules.b/org/modules/b/Main.java
+      $(find src/org.modules.b -name "*.java")
 
 if [[ ${1} == "smoketest" ]]; then
     java -p target/classes -m org.modules.b/org.modules.b.Main
